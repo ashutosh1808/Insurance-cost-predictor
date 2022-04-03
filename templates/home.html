@@ -1,0 +1,50 @@
+<html>
+<head>
+<link rel="shortcut icon" type="image/png" href="main.png">
+<title> Welcome to InsurePro </title>
+</head>
+<body>
+<style> *{ font-size:35px; font-family:arial; } 
+body {background-color:rgb(218, 230, 172)}
+</style>
+<center>
+<marquee><h1>Welcome to InsurePro - which predicts your insurance cost easily. To proceed further, fill in the details  </h1></marquee>
+</center>
+<hr>
+<form action="/get" method="POST">
+<label for="n1">What is your name? </label>
+<input type="text" placeholder="Rahul Mehra" name="n1" required>
+<br><br>
+<label for="sex"> What's your gender: </label>
+<select for="sex">
+<option> Male </option>
+<option> Female </option>
+<option> Other </option>
+</select>
+<br><br>
+<label for="hf">Enter height in feets</label>
+<input type="number" placeholder="4" min="1" max="9" name="hf" required>
+<br><br>
+<label for="hi">Enter height in inches</label>
+<input type="number" placeholder="6" min="0" max="11" name="hi" required>
+<br><br>
+<label for="wt">Enter weight in kg </label>
+<input type="number" placeholder="40" min="18" max="150" name="wt" required>
+<br><br>
+<label for="em">What's your email ID?  </label>
+<input type="email" placeholder="yourname@provider.com" name="em" required>
+<br><br>
+<label for="age"> How old are you? </label>
+<input type="number" value="18" name="age" min="18" max="99" required>
+<br><br>
+<label for="smk">Do you smoke? </label>
+<input type="radio" name="smk" value="0" checked> No </input>
+<input type="radio" name="smk" value="1"> Yes </input>
+<br><br>
+<center><input type="submit" value="Predict cost"></center>
+<br><br>
+<center>{{msg}}</center>
+</form>
+<center><h2>Developed by Ashutosh Mishra</h2></center>
+</body>
+</html>
