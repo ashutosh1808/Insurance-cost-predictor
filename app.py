@@ -15,10 +15,12 @@ mail=Mail(app) #instantiate the Mail class
 #home page
 @app.route("/")
 def home():
-	return render_template("home.html")
+	return render_template("index.html")
 #after pressing predict option
 @app.route("/get",methods=["POST"])
 def get():
+	smk=request.form.get("smk") #smoking or not?
+	print(smk)
 	fname=request.form["fname"] #accept the fname
 	if not(fname.isalpha()) or len(fname)<2:	#validation for fname
 	    return render_template("home.html",msg="First name should contain alphabets only")
@@ -40,14 +42,15 @@ def get():
 	em=request.form["em"]  #accepting the email from user
 	age=float(request.form["age"]) #age
 	smk=request.form.get("smk") #smoking or not?
+	smk=0
 	with open("ic.model","rb") as f: #using the saved model
 		model=pickle.load(f)
 	data=[[bmi,age,smk]] 
 	res=model.predict(data);	ans=round(res[0],0) #prediction
 	msg=Message("Report for the medical insurance",sender="tester.insurepro@gmail.com",recipients=[em]) #the body of mail to be sent
 	msg.body="Hey "+str(name).title()+"\n"+"Thanks for using InsurePro. Your medical insurance cost for this month is Rs."+str(ans)+" Your BMI is "+str(bmi)+" which means "+str(pk)
-	mail.send(msg) #send the mail
-	return render_template("home.html",msg="Thanks for using this! You will receive a mail shortly.") #show it on the webpage
+	#mail.send(msg) #send the mail
+	return render_template("index.html",msg="Thanks for using this! You will receive a mail shortly.") #show it on the webpage
 
 if __name__=="__main__":  #run the app
 	app.run(debug=True,use_reloader=True)  #it can be debugged as well as reloaded whenever needed
